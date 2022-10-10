@@ -11,13 +11,15 @@ working directory.
    dependency to **github.com/paxtonhare/demo-magic**. This allows some commands
    to be executed and printed independetly in a pretty way and ensures a
    deterministic behavior of the demo.
-3. Open a new terminal window in the demo directory. This terminal watches all
+3. `git init` must create a the new repository with the 'main' branch. See `git
+   config --global init.defaultBranch [name]` for more information.
+4. Open a new terminal window in the demo directory. This terminal watches all
     the file changes in the git repository during the demonstration. Execute the
     following commands: 
     - `cd demo-repository`
     - `watch -n 1 -d find . -type f`
-4. Open a second terminal window. This one runs the `demo.sh` script which will
+5. Open a second terminal window. This one runs the `demo.sh` script which will
     execute some basic Git commands that demonstrate Git object behavior.
     Execute:
     - `./demo.sh`
-5. Follow through the demo by pressing `<Enter>` (or `q` to exit man pages).
+6. Follow through the demo by pressing `<Enter>` (or `q` to exit man pages).
