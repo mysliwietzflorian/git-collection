@@ -1,0 +1,3 @@
+# do not check files from demonstration into the parent repository
+
+demo-repository/*
