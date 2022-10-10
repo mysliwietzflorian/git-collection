@@ -113,7 +113,7 @@ pe "GIT_COMMITTER_DATE=\"2022-10-21T08:00:00\" git commit -m \"further changes\"
 pe "clear"
 
 pe "git log --oneline"
-pe "git cat-file -p dc8819e"
+pe "git cat-file -p HEAD"
 pe "git cat-file -p f90971a"
 pe "git cat-file -p 1892df5"
 pe "clear"
