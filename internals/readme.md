@@ -18,7 +18,8 @@ working directory.
    - `pigz`: used for initial decompression of Git object content.
    - `man-db`: manpages are used within the demo to explain commands.    
 4. `git init` must create a the new repository with the 'main' branch. See `git
-   config --global init.defaultBranch [name]` for more information.
+   config --global init.defaultBranch [name]` for more information if any
+   problems occur.
 5. Open a new terminal window in the demo directory. This terminal watches all
     the file changes in the git repository during the demonstration. Execute the
     following commands: 
