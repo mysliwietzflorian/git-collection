@@ -2,7 +2,7 @@
 . demo-magic.sh -d
 
 SHOW_CMD_NUMS=true
-DEMO_PROMPT="${BLUE}~${COLOR_RESET}$ "
+DEMO_PROMPT="$BLUE~$COLOR_RESET$ "
 
 ### clean up previous run ###
 
@@ -14,15 +14,15 @@ clear
 p "mkdir demo-repository"
 pe "cd demo-repository"
 
-DEMO_PROMPT="${BLUE}~/demo-repository${COLOR_RESET}$ "
+DEMO_PROMPT="$BLUE~/demo-repository$COLOR_RESET$ "
 
 ### initial setup ###
 
 p "git init"
 git init > /dev/null
 echo "Initialized empty Git repository"
-
-DEMO_PROMPT="${BLUE}~/demo-repository${GREEN}(main)${COLOR_RESET}$ "
+BRANCH_NAME=$(git branch --show-current)
+DEMO_PROMPT="$BLUE~/demo-repository$GREEN($BRANCH_NAME)$COLOR_RESET$ "
 
 # the following files are not needed for the demo
 pe "rm -r .git/hooks"
@@ -74,7 +74,7 @@ pei ""
 # The demo cannot deterministicly infer the commit hash (because of author name
 # and different commit and author timestamps) -> use HEAD instead
 pe "cat .git/HEAD"
-pe "cat .git/refs/heads/main"
+pe "cat .git/refs/heads/$BRANCH_NAME"
 pe "clear"
 
 ### commit hash generation ###
@@ -96,7 +96,7 @@ pe "clear"
 
 ### remove unreachable commits from before ###
 
-pe "rm .git/logs/refs/heads/main"
+pe "rm .git/logs/refs/heads/$BRANCH_NAME"
 pe "rm .git/logs/HEAD"
 pe "git fsck --unreachable"
 # instead of git gc (which will also pack commits which we want to avoid here)
