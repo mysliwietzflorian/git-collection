@@ -38,9 +38,15 @@ BRANCH_NAME=$(git branch --show-current)
 DEMO_PROMPT="$BLUE~/demo-repository$GREEN($BRANCH_NAME)$COLOR_RESET$ "
 
 # the following files are not needed for the demo
-pe "rm -r .git/hooks"
-pe "rm -r .git/info/exclude"
-pe "rm -r .git/description"
+if [[ -d ".git/hooks" ]]; then
+    pe "rm -r .git/hooks"
+fi
+if [[ -d ".git/info/exclude" ]]; then
+    pe "rm -r .git/info/exclude"
+fi
+if [[ -d ".git/description" ]]; then
+    pe "rm -r .git/description"
+fi
 pei ""
 pe "git status"
 pe "clear"
