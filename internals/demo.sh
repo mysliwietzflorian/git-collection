@@ -4,6 +4,19 @@
 SHOW_CMD_NUMS=true
 DEMO_PROMPT="$BLUE~$COLOR_RESET$ "
 
+function check_pigz {
+    command -v pigz >/dev/null 2>&1 || {
+            echo ""
+            echo -e "${RED}##############################################################" >&2
+            echo "# HOLD IT!! I require pigz but it's not installed.  Aborting." >&2;
+            echo -e "${RED}##############################################################" >&2
+            echo -e "${COLOR_RESET}" >&2
+            exit 1;
+        }
+}
+
+check_pigz
+
 ### clean up previous run ###
 
 rm -rf demo-repository/*
