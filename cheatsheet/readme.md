@@ -8,9 +8,11 @@
 - [Synchronizing repositories](#synchronizing-repositories)
 - [Temporary commits](#temporary-commits)
 - [Tagging known commits](#tagging-known-commits)
-- [Appendix A - Ignoring files](#appendix-a---ignoring-files)
-- [Appendix B - Working areas](#appendix-b---working-areas)
-- [Appendix C - Workflows in PhpStorm](#appendix-c---workflows-in-phpstorm)
+- [Appendix](#appendix)
+    - [Appendix A - Working areas](#a---working-areas)
+    - [Appendix B - Ignoring files](#b---ignoring-files)
+    - [Appendix C - Commands in PhpStorm](#c---commands-in-phpstorm)
+    - [Appendix D - Workflows in PhpStorm](#d---workflows-in-phpstorm)
 - [References](#references)
 
 ## Configuration
@@ -41,41 +43,11 @@ provided, then a new repository is initialized in the current directory.
 `$ git clone [project url]`  
 Download a project with the entire history from the remote repository.
 
-> In the PhpStorm IDE
-
-- Open a project on GitLab or GitHub to copy the URL for cloning the repository.
-- Use "Clone with SSH" on GitLab as per our company guidelines.
-- Open your PhpStorm IDE and navigate to "Git > Clone" in the top menu.
-- Enter your project URL and select your working directory. Be aware that this
-  directory can vary depending on your development setup (cf. WSL for local
-  docker development).
-- Click "Clone".
-
-![](img/clone-ide1.png)
-
 ## Day-to-day work
 
 `$ git status`  
 List which files are staged, unstaged, and untracked. It will also retrieve the
 branch name, the current commit ID (hash), and pending commits from the remote.
-
-> In the PhpStorm IDE
-
-- In your project tree you see the state of your files based on their colors.
-    - **Ignored (yellow)**: This file is ignored based on the .gitignore file.
-    - **Untracked (red)**: This file exists locally, but isn’t a part of the Git
-      repository. Also, it will not be within the next commit. Use `git add` to
-      stage the file for the next commit.
-    - **New (green)**: This file will be committed but is new to the repository.
-    - **Modified (blue)**: This file is already part of the repository but has
-      changed since the last commit. That change will be committed.
-    - **Deleted (grey)**: This change is in the repository but we be removed
-      from it in the next commit.
-    - **Unchanged**: This file has no changes since the last commit.
-
-![](img/index-1.png)
-![](img/index-2.png)
-![](img/index-3.png)
 
 `$ git commit`  
 Create a new commit from changes added to the staging area. A new text editor
@@ -85,43 +57,15 @@ will be launched to write a commit message.
 Create a new commit from the changes added to the staging area, but instead of
 launching a text editor, use the message directly as the commit message.
 
-> In the PhpStorm IDE
-
-- You can choose between "commit dialog" and "non-modal commit interface" (use
-  second choice if in doubt)
-- Select the files that you want to check into the repository (also stubs of a
-  file are possible)
-- Add a descriptive commit message
-- Click "Commit" or "Commit and Push" (update the project before you push)
-- Further advice:
-    - Additionally you could select the option the run a code analyzer before
-      the commit and further tools but I would advise against it. We should use
-      more sophisticated tools for that in the near future.
-    - Do not use "After commit upload files to". High risk to overwrite other
-      changes. Let a pipeline do that for you.
-
 `$ git add [file]`  
 Add a file to the staging area. You can also use a glob pattern to add multiple
 changed files at once.
 
-> In the PhpStorm IDE
-
-![](img/add-1.png)
-![](img/add-2.png)
-
 `$ git rm [file]”`  
 Remove a file from the working direcory and the staging area.
 
-> In the PhpStorm IDE
-
-![](img/remove.png)
-
 `$ git mv [existing file] [new file]”`  
 Move an existing file and add it to the staging area.
-
-> In the PhpStorm IDE
-
-- Just rename the file. PhpStorm and Git will do that for you.
 
 `$ git diff [file]`  
 Show changes between the working directory and the staging area.
@@ -129,28 +73,12 @@ Show changes between the working directory and the staging area.
 `$ git diff --staged [file]`  
 Show any changes between the staging area and the repository.
 
-> In the PhpStorm IDE
-
-- Use the colored part right of the line numbers to see or discard changes.
-- Double click the files in the commit interface to see a diff view.
-    - You can choose between a side-by-side viewer and a unified viewer.
-    - You can change how to handle white spaces.
-    - You can collapse unchanged fragments which is useful for longer files.
-
-![](img/diff-editor.png)
-![](img/diff-view.png)
-
 `$ git checkout -- [file]`  
 Discard file changes in the working directory. This operation is unrecoverable.
 
 `$ git reset [commit]`  
 Reset the staging area to match the commit (most recent commit if
 omitted), but leave the working directory alone.
-
-> In the PhpStorm IDE
-
-![](img/rollback-1.png)
-![](img/rollback-2.png)
 
 `$ git reset --hard [commit]`  
 Reset the staging area and the working directory to match the commit (most
@@ -173,13 +101,6 @@ Merge changes from specified branch into the current one.
 
 `$ git branch -d [branch name]`  
 Remove a branch, if it is already merged into any other.
-
-> In the PhpStorm IDE
-
-- All of the options above can be found in the Git tab (`Alt+9`) or in the
-  bottom right corner. You can see the local and the remote branches.
-
-![](img/branch.png)
 
 ## Review your work
 
@@ -225,13 +146,6 @@ repository.
 `$ git show [hash]`  
 Show any object in Git in a human-readable format.
 
-> In the PhpStorm IDE
-
-- The best option to see all the changes is with the Git tab (`Alt+9`). There
-  you can navigate and filter through all the commits of all branches.
-
-![](img/log.png)
-
 ## Synchronizing repositories
 
 `$ git remote add [alias] [url]`  
@@ -253,20 +167,6 @@ upstream.
 Push the local changes to the remote repository. If the remote branch does not
 exist, it will be created. Use the option `--tags` to push tags as well.
 
-> In the PhpStorm IDE
-
-- There are several options to achieve the task from above. All of them can
-  perform approximately the same: 
-    - Main menu under Git
-    - Git tab
-    - Branch selection in the bottom right
-    - Task menu to the right
-- Always try to update your project before you commit and push. With this
-  strategy you can avoid additional merge commits and potentially conflicts
-  during the merge.
-
-![](img/remote.png)
-
 ## Temporary commits
 
 `$ git stash`  
@@ -281,15 +181,6 @@ Apply stored stash content into the working directory and clear the stash.
 `$ git stash drop`  
 Delete a specific stash from all your previous stashes.
 
-> In the PhpStorm IDE
-
-- PhpStorm provides an even better way than stashing your changes and calls that
-  concept "shelves". It also stores your changed files and will apply them again
-  when you unshelve. You can also choose which specific parts of a file you want
-  to shelve.
-
-![](img/shelve.png)
-
 ## Tagging known commits
 
 `$ git tag`  
@@ -302,22 +193,23 @@ if argument is omitted).
 `$ git tag -d [name]`  
 Remove a tag from the local repository.
 
-> In the PhpStorm IDE
+## Appendix
 
-- In the Git tab right click any commit and select "New Tag...". Be sure to also
-  select "Push tags" once you push your code.
+### A - Working areas
 
-## Appendix A - Ignoring files
+See [Working areas](01_working-areas.md)
 
-See [Appendix A - Ignoring files](01_ignoring-files.md)
+### B - Ignoring files
 
-## Appendix B - Working areas
+See [Ignoring files](02_ignoring-files.md)
 
-See [Appendix B - Working areas](02_working-areas.md)
+### C - Commands in PhpStorm
 
-## Appendix C - Workflows in PhpStorm
+See [Commands in PhpStorm](03_commands-in-phpstorm.md)
 
-See [Appendix C - Workflows in PhpStorm](03_workflows-in-phpstorm.md)
+### D - Workflows in PhpStorm
+
+See [Workflows in PhpStorm](04_workflows-in-phpstorm.md)
 
 ## References
 

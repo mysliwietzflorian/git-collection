@@ -1,4 +1,4 @@
-# Appendix B - Working areas
+# Working areas
 
 ## Upstream repository
 

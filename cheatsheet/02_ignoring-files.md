@@ -1,4 +1,4 @@
-# Appendix A - Ignoring files
+# Ignoring files
 
 You can prevent the unintentional staging and committing of a file with a
 `.gitignore` file. Each line in that particular file specifies a glob pattern
@@ -16,12 +16,7 @@ like the following:
 This ignores all all files in `logs` directory (excluding a `.gitkeep` file),
 the whole `tmp` directory and all files with `*.swp`.
 
-> In the PhpStorm IDE
-
-- Untracked files can directly be added to a gitignore file via the context
-  menu.
-
-Which files to ignore?
+## Which files to ignore?
 
 - **Credentials!**
 - Files downloaded with package managers

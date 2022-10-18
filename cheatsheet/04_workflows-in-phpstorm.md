@@ -1,4 +1,8 @@
-# Appendix C - Workflows in PhpStorm
+# Workflows in PhpStorm
+
+This document has embeded images. Depending on the format you are looking it
+they might not be rendered correctly. You can also have a look in the `videos`
+folder.
 
 ## Introduction and gitignore
 
