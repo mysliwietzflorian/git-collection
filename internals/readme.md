@@ -21,7 +21,7 @@ working directory.
    - `pigz`: used for the raw decompression of Git object content.
    - `man-db`: manpages are used within the demo to explain commands.
 
-### Running
+## Running
 
 1. Open a new terminal window in the `demo-repository` folder. This terminal
     watches all the file changes in the Git repository during the demonstration.
