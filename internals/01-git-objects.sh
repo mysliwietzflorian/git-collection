@@ -41,7 +41,7 @@ pe "git cat-file -p 46da79a"
 pei ""
 pe "git cat-file -t HEAD" # HEAD is used as the commit hash is unpredictable by the demo at this point 
 pe "git cat-file -p HEAD"
-pei "clear"
+pe "clear"
 
 pe "cat .git/HEAD"
 pe "cat .git/refs/heads/$BRANCH_NAME"
